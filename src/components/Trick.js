@@ -34,7 +34,9 @@ const Trick = ({ trickContent }) => {
 				onLoad={() => {
 					const loader = document.querySelector(".loader");
 					const trickImg = document.querySelector(".trick-container img");
-					loader.remove();
+					if (loader !== null) {
+						loader.remove();
+					}
 					trickImg.classList.add("show");
 				}}
 			/>

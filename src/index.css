@@ -39,6 +39,7 @@ body.flash {
 	border: 5px solid #000;
 	margin-right: 8px;
 	transition: all 0.2s ease-in-out;
+	cursor: pointer;
 }
 .site-logo:hover {
 	border-radius: 50%;

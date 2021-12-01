@@ -35,7 +35,7 @@ function App(props) {
 
 	return (
 		<div className="App">
-			<Header />
+			<Header updateDisplayedTrick={updateDisplayedTrick} />
 			<div className="container main">
 				<List updateDisplayedTrick={updateDisplayedTrick} trickId={trickId} />
 				<Trick trickContent={trickData[trickId]} />
