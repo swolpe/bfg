@@ -5,7 +5,26 @@ const TrickList = ({ updateDisplayedTrick, trickId }) => {
 	const trickNamesArray = trickData.map((trick) => {
 		return trick.name.toLowerCase();
 	});
-	console.log("This is the trick id passed to tricklist: ", trickId);
+
+	const sortedTricks = Object.values(trickData).sort(function (a, b) {
+		if (a.name < b.name) {
+			return -1;
+		}
+		if (a.name > b.name) {
+			return 1;
+		}
+		return 0;
+	});
+
+	const airTricks = sortedTricks.filter((trick) => trick.type === "air");
+	const grindTricks = sortedTricks.filter((trick) => trick.type === "grind");
+	const specialTricks = sortedTricks.filter(
+		(trick) => trick.type === "special"
+	);
+	const variationTricks = sortedTricks.filter(
+		(trick) => trick.type === "variation"
+	);
+
 	// submit the form
 	const submitForm = (e) => {
 		// prevent page reload on form submission
@@ -33,9 +52,6 @@ const TrickList = ({ updateDisplayedTrick, trickId }) => {
 			// call parent callBack function (inside App.js)
 			// to update the trick prop being sent to Trick component
 			updateDisplayedTrick(trickSelector.value.toLowerCase());
-
-			//*** trigger special effect with useEffect everytime the trick changes!!!
-			//*** make body bgcolor change to gray then fade out
 
 			// clear the input
 			trickSelector.value = "";
@@ -80,9 +96,30 @@ const TrickList = ({ updateDisplayedTrick, trickId }) => {
 					placeholder="Type Here"
 				/>
 				<datalist id="tricks">
-					{trickData.map((trick) => {
-						return <option key={trick.id} value={trick.name} />;
-					})}
+					<optgroup label="Grinds">
+						Grinds
+						{grindTricks.map((trick) => {
+							return <option key={trick.id} value={trick.name} />;
+						})}
+					</optgroup>
+					<optgroup label="Specials">
+						Special Grinds
+						{specialTricks.map((trick) => {
+							return <option key={trick.id} value={trick.name} />;
+						})}
+					</optgroup>
+					<optgroup label="Variations">
+						Grind Variations
+						{variationTricks.map((trick) => {
+							return <option key={trick.id} value={trick.name} />;
+						})}
+					</optgroup>
+					<optgroup label="Airs">
+						Airs and Grabs
+						{airTricks.map((trick) => {
+							return <option key={trick.id} value={trick.name} />;
+						})}
+					</optgroup>
 				</datalist>
 				<input type="submit" className="btn" />
 			</form>
