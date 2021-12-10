@@ -40,6 +40,7 @@ function App(props) {
 				<List updateDisplayedTrick={updateDisplayedTrick} trickId={trickId} />
 				<Trick trickContent={trickData[trickId]} />
 			</div>
+			{/* TO-DO: pass about component to modal component as a prop */}
 			<Modal
 				closeModal={() => setModalOpen(!modalOpen)}
 				modalOpen={modalOpen}
