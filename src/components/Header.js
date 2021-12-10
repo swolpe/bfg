@@ -2,7 +2,7 @@ import trickData from "../trickData.json";
 
 const Header = ({ updateDisplayedTrick }) => {
 	const getRandomTrick = () => {
-		const trickName = trickData[Math.floor(Math.random() * 26)].name;
+		const trickName = trickData[Math.floor(Math.random() * 66)].name;
 		// call parent callBack function (inside App.js)
 		// to update the trick prop being sent to Trick component
 		updateDisplayedTrick(trickName.toLowerCase());
